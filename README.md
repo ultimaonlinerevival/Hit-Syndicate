@@ -1,2 +1,2 @@
-# No-Quarter-Given---Hit-Syndicate
+Hit-Syndicate
 Guild page 
