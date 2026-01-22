@@ -1,4 +1,3 @@
-
 :root{
   --bg0:#070709;
   --bg1:#0b0b0d;
@@ -21,6 +20,7 @@
 
 *{ box-sizing:border-box; }
 html,body{ height:100%; }
+
 body{
   margin:0;
   font-family: ui-serif, Georgia, "Times New Roman", serif;
@@ -80,13 +80,37 @@ a{ color: inherit; }
   flex:0 0 auto;
 }
 
-.nav{
+/* -------------------------------------------------------
+   Navigation (mobile-first hamburger + desktop pills)
+------------------------------------------------------- */
+
+.navwrap{
+  width:100%;
   display:flex;
-  flex-wrap:wrap;
+  align-items:center;
+  justify-content:flex-start;
   gap:10px;
+  flex-wrap:wrap;
 }
 
-.nav a{
+/* Desktop links hidden by default (mobile-first) */
+.nav-desktop{
+  display:none;
+}
+
+/* Mobile menu shown by default */
+.nav-mobile{
+  position:relative;
+}
+
+.menu-btn{
+  list-style:none;
+  cursor:pointer;
+  user-select:none;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+
   text-decoration:none;
   color:rgba(255,255,255,.92);
   font-family: ui-sans-serif, system-ui, Arial;
@@ -98,14 +122,76 @@ a{ color: inherit; }
   line-height:1;
 }
 
-.nav a:hover{
+.menu-btn:hover{
   background: rgba(0,0,0,.35);
 }
 
-.nav a[aria-current="page"]{
+/* Remove default marker */
+.menu-btn::-webkit-details-marker{ display:none; }
+.menu-btn::marker{ content:""; }
+
+.menu-icon{
+  width:14px;
+  height:10px;
+  display:inline-block;
+  position:relative;
+}
+
+.menu-icon::before{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  top:0;
+  height:2px;
+  background:rgba(255,255,255,.85);
+  border-radius:2px;
+  box-shadow:
+    0 4px 0 rgba(255,255,255,.85),
+    0 8px 0 rgba(255,255,255,.85);
+}
+
+.nav-mobile[open] .menu-btn{
   border-color: rgba(202,161,90,.70);
   box-shadow: 0 0 0 2px rgba(202,161,90,.18);
 }
+
+.menu-panel{
+  position:absolute;
+  top:calc(100% + 10px);
+  left:0;
+  min-width:220px;
+  padding:10px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.18);
+  background: rgba(0,0,0,.78);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 18px 60px rgba(0,0,0,.45);
+  z-index:1000;
+}
+
+.menu-panel a{
+  display:block;
+  padding:10px 10px;
+  border-radius:12px;
+  text-decoration:none;
+  color:rgba(255,255,255,.92);
+  font-family: ui-sans-serif, system-ui, Arial;
+  font-size:14px;
+}
+
+.menu-panel a:hover{
+  background: rgba(255,255,255,.08);
+}
+
+.menu-panel a[aria-current="page"]{
+  background: rgba(202,161,90,.18);
+  outline: 1px solid rgba(202,161,90,.35);
+}
+
+/* -------------------------------------------------------
+   Main surface
+------------------------------------------------------- */
 
 .paper{
   border-radius: var(--radius);
@@ -215,7 +301,10 @@ a{ color: inherit; }
   font-size:12px;
 }
 
-/* Accessible skip link helper */
+/* -------------------------------------------------------
+   Accessibility
+------------------------------------------------------- */
+
 .visually-hidden-focusable{
   position:absolute;
   left:-9999px;
@@ -238,20 +327,23 @@ a{ color: inherit; }
   z-index:9999;
 }
 
-/* Focus styles (keyboard) */
-a:focus-visible{
+a:focus-visible,
+.menu-btn:focus-visible,
+.menu-panel a:focus-visible{
   outline:3px solid rgba(202,161,90,.85);
   outline-offset:3px;
   border-radius:12px;
 }
 
-/* Reduce motion preference */
 @media (prefers-reduced-motion: reduce){
   *{ scroll-behavior:auto !important; }
   .smoke{ filter: blur(7px); }
 }
 
-/* Larger screens */
+/* -------------------------------------------------------
+   Larger screens
+------------------------------------------------------- */
+
 @media (min-width: 860px){
   .wrap{ padding:28px 16px 64px; }
 
@@ -260,6 +352,29 @@ a:focus-visible{
     align-items:center;
     justify-content:space-between;
     gap:14px;
+  }
+
+  /* Desktop pills */
+  .nav-mobile{ display:none; }
+
+  .nav-desktop{
+    display:inline-block;
+    text-decoration:none;
+    color:rgba(255,255,255,.92);
+    font-family: ui-sans-serif, system-ui, Arial;
+    font-size:13px;
+    padding:10px 12px;
+    border:1px solid rgba(255,255,255,.22);
+    border-radius:14px;
+    background: rgba(0,0,0,.25);
+    line-height:1;
+  }
+
+  .nav-desktop:hover{ background: rgba(0,0,0,.35); }
+
+  .nav-desktop[aria-current="page"]{
+    border-color: rgba(202,161,90,.70);
+    box-shadow: 0 0 0 2px rgba(202,161,90,.18);
   }
 
   .paper-inner{ padding:22px; }
