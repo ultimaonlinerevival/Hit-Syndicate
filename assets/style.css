@@ -395,3 +395,12 @@ a:focus-visible,
 
   .card.half{ grid-column: span 6; }
 }
+@media (min-width: 860px){
+  .grid > .card{
+    grid-column: 1 / -1; /* full width by default */
+  }
+  .grid > .card.half{
+    grid-column: span 6; /* halves still behave as halves */
+  }
+}
+
