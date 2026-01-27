@@ -1,18 +1,27 @@
 ---
 const { current = "" } = Astro.props;
 
-const is = (key) => (current === key ? { "aria-current": "page" } : {});
+type NavKey =
+  | "home"
+  | "about"
+  | "events"
+  | "syndicategames"
+  | "discord"
+  | "templates"
+  | "media";
+
+const isCurrent = (key: NavKey) => (current === key ? "page" : undefined);
 ---
 
 <nav class="navwrap" aria-label="Primary navigation">
   <!-- Desktop pills -->
-  <a class="nav-desktop" href="index.html" {...is("home")}>Home</a>
-  <a class="nav-desktop" href="about.html" {...is("about")}>About</a>
-  <a class="nav-desktop" href="events.html" {...is("events")}>Events</a>
-  <a class="nav-desktop" href="syndicategames.html" {...is("games")}>Syndicate Games</a>
-  <a class="nav-desktop" href="discord.html" {...is("discord")}>Discord</a>
-  <a class="nav-desktop" href="templates.html" {...is("templates")}>Templates</a>
-  <a class="nav-desktop" href="media.html" {...is("media")}>Media</a>
+  <a class="nav-desktop" href="index.html" aria-current={isCurrent("home")}>Home</a>
+  <a class="nav-desktop" href="about.html" aria-current={isCurrent("about")}>About</a>
+  <a class="nav-desktop" href="events.html" aria-current={isCurrent("events")}>Events</a>
+  <a class="nav-desktop" href="syndicategames.html" aria-current={isCurrent("syndicategames")}>Syndicate Games</a>
+  <a class="nav-desktop" href="discord.html" aria-current={isCurrent("discord")}>Discord</a>
+  <a class="nav-desktop" href="templates.html" aria-current={isCurrent("templates")}>Templates</a>
+  <a class="nav-desktop" href="media.html" aria-current={isCurrent("media")}>Media</a>
 
   <!-- Mobile hamburger -->
   <details class="nav-mobile">
@@ -21,13 +30,13 @@ const is = (key) => (current === key ? { "aria-current": "page" } : {});
       <span class="menu-icon" aria-hidden="true"></span>
     </summary>
     <div class="menu-panel">
-      <a href="index.html" {...is("home")}>Home</a>
-      <a href="about.html" {...is("about")}>About</a>
-      <a href="events.html" {...is("events")}>Events</a>
-      <a href="syndicategames.html" {...is("games")}>Syndicate Games</a>
-      <a href="discord.html" {...is("discord")}>Discord</a>
-      <a href="templates.html" {...is("templates")}>Templates</a>
-      <a href="media.html" {...is("media")}>Media</a>
+      <a href="index.html" aria-current={isCurrent("home")}>Home</a>
+      <a href="about.html" aria-current={isCurrent("about")}>About</a>
+      <a href="events.html" aria-current={isCurrent("events")}>Events</a>
+      <a href="syndicategames.html" aria-current={isCurrent("syndicategames")}>Syndicate Games</a>
+      <a href="discord.html" aria-current={isCurrent("discord")}>Discord</a>
+      <a href="templates.html" aria-current={isCurrent("templates")}>Templates</a>
+      <a href="media.html" aria-current={isCurrent("media")}>Media</a>
     </div>
   </details>
 </nav>
