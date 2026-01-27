@@ -1,0 +1,108 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const templates = [
+  {
+    id: "pvp-mage",
+    title: "PvP Mage",
+    role: "PvP",
+    summary: "Classic field/duel caster template. Strong control, burst, and utility.",
+    bullets: [
+      "Spell pressure + defensive tools",
+      "Works solo or in small groups",
+      "Easy to adapt with suit/skills",
+    ],
+    status: "Placeholder",
+  },
+  {
+    id: "dexxer",
+    title: "Dexxer",
+    role: "PvP / PvM",
+    summary: "Weapon-based fighter. Great for chase, pressure, and finishing.",
+    bullets: [
+      "High sustained damage",
+      "Simple execution under pressure",
+      "Scales well with gear",
+    ],
+    status: "Placeholder",
+  },
+  {
+    id: "tamer",
+    title: "Tamer",
+    role: "PvM / PvP",
+    summary: "Pet-driven template. Strong for PvM and certain PvP formats.",
+    bullets: [
+      "Flexible pet choices",
+      "Great for bosses/raids",
+      "Can be paired with utility skills",
+    ],
+    status: "Placeholder",
+  },
+];
+
+const notes = [
+  "This page is for suggestions and known-good builds.",
+  "Exact skill lines and suit goals will be added as we lock them in.",
+];
+---
+
+<BaseLayout title="Templates • Hit Syndicate • Atlantic" current="templates">
+  <section class="hero" aria-label="Templates page header">
+    <div>
+      <h1>Templates</h1>
+      <p class="tagline">Build ideas • Notes • Known-good setups</p>
+    </div>
+
+    <div class="wax" aria-label="Section label">
+      <span class="seal" aria-hidden="true"></span>
+      <span>Loadouts</span>
+    </div>
+  </section>
+
+  <section class="grid" aria-label="Templates content">
+    <section class="card" aria-label="Templates overview">
+      <p>
+        Templates are suggestions, not requirements. Use what you like — this is just a place to
+        collect builds that work and make it easy for members to gear and improve fast.
+      </p>
+      <ul>
+        {notes.map((n) => (
+          <li>{n}</li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="card" aria-label="Template index">
+      <h2>Index</h2>
+      <ul>
+        {templates.map((t) => (
+          <li>
+            <a href={`#${t.id}`}>{t.title}</a>{" "}
+            <span class="muted">— {t.role}</span>
+            <div class="muted">{t.summary}</div>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    {templates.map((t) => (
+      <section class="card" id={t.id} aria-label={t.title}>
+        <h2>
+          {t.title} <span class="muted">({t.role})</span>
+        </h2>
+
+        <p>{t.summary}</p>
+
+        <ul>
+          {t.bullets.map((b) => (
+            <li>{b}</li>
+          ))}
+        </ul>
+
+        <p class="muted">
+          Status: {t.status} — replace this block with your real skill lines, stats, suit goals, and macros.
+        </p>
+      </section>
+    ))}
+  </section>
+</BaseLayout>

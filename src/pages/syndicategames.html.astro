@@ -1,0 +1,234 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const games = [
+  {
+    id: "the-hunt",
+    title: "THE HUNT",
+    subtitle: "Asymmetric Funhouse Event",
+    tags: ["PvP", "Asymmetric", "Objectives", "House Event"],
+    summary:
+      "One hunter stalks the house. Survivors complete torch tasks to unlock the exit and escape — or die trying.",
+  },
+  {
+    id: "bless-or-bolt",
+    title: "Bless or Bolt",
+    subtitle: "Funhouse Battle Royale",
+    tags: ["PvP", "Battle Royale", "Scavenge", "Modifiers"],
+    summary:
+      "Enter naked, scavenge to survive, and let robe color decide what the mage rooms do to you. Last survivor wins — if anyone survives.",
+  },
+];
+---
+
+<BaseLayout title="Syndicate Games • Hit Syndicate • Atlantic" current="games">
+  <section class="hero" aria-label="Syndicate Games header">
+    <div>
+      <h1>Syndicate Games</h1>
+      <p class="tagline">Custom formats • Repeatable • Logged</p>
+    </div>
+
+    <div class="wax" aria-label="Section label">
+      <span class="seal" aria-hidden="true"></span>
+      <span>Formats</span>
+    </div>
+  </section>
+
+  <section class="grid" aria-label="Syndicate Games content">
+    <section class="card" aria-label="Syndicate Games overview">
+      <p>
+        Syndicate Games are custom formats we can run repeatedly without re-explaining rules every time.
+        This page is the source of truth.
+      </p>
+    </section>
+
+    <section class="card" aria-label="Game list">
+      <h2>Games</h2>
+      <ul>
+        {games.map((g) => (
+          <li>
+            <a href={`#${g.id}`}>{g.title}</a>{" "}
+            <span class="muted">— {g.subtitle}</span>
+            <div class="muted">{g.summary}</div>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="card" id="the-hunt" aria-label="THE HUNT rules">
+      <h2>THE HUNT <span class="muted">— Asymmetric Funhouse Event</span></h2>
+      <p class="muted">
+        One hunter stalks the house. Survivors must complete tasks, unlock the exit, and escape — or die trying.
+      </p>
+
+      <h3>Roles &amp; Templates</h3>
+      <ul>
+        <li><strong>Killer (1):</strong> Any template. Fully geared. One weapon only.</li>
+        <li><strong>Survivors (4+):</strong> Any template. No weapons on entry. Limited supplies found inside.</li>
+        <li class="muted">Player count and rewards scale with attendance.</li>
+      </ul>
+
+      <h3>Objectives</h3>
+      <ul>
+        <li>Survivors complete tasks to unlock the escape.</li>
+        <li>One final <strong>torch task</strong> opens the exit door.</li>
+        <li><strong>Killer wins</strong> by eliminating all survivors.</li>
+        <li><strong>Survivors win</strong> by escaping the house.</li>
+      </ul>
+
+      <h3>Tasks</h3>
+      <ul>
+        <li>Tasks require transporting <strong>lit torches</strong> to specific locations.</li>
+        <li>
+          Torches must be:
+          <ul>
+            <li>Picked up</li>
+            <li>Lit</li>
+            <li>Moved <strong>one tile at a time</strong> via drag-and-drop</li>
+          </ul>
+        </li>
+        <li><strong>Torches go out</strong> if the carrier is hit or killed.</li>
+        <li>Completed tasks permanently advance progress.</li>
+      </ul>
+
+      <h3>Death, Ghosts &amp; Resurrection</h3>
+      <ul>
+        <li>Survivors may die up to <strong>3 times</strong>.</li>
+        <li>On death: player becomes a ghost; other survivors may resurrect them.</li>
+        <li>After a <strong>3rd death</strong>: survivor is permanently eliminated.</li>
+        <li>Ghosts cannot escape. If the exit is open, ghosts must be resurrected to leave.</li>
+      </ul>
+
+      <h3>Survivor Actions</h3>
+      <ul>
+        <li>
+          Survivors may heal injured players:
+          <ul>
+            <li><strong>One heal per chase</strong></li>
+            <li>No chain casting (no GH spam)</li>
+          </ul>
+        </li>
+        <li>Body block the Killer.</li>
+        <li>Drop items (chests, furniture) to block paths.</li>
+        <li>Close doors and create obstacles.</li>
+        <li>Sacrifice teammates to complete objectives.</li>
+      </ul>
+
+      <h3>Wrestling &amp; Control</h3>
+      <ul>
+        <li>Wrestling is allowed.</li>
+        <li>Paralyze and Disarm are allowed.</li>
+        <li class="muted">Use must be reasonable — no spam locking.</li>
+      </ul>
+
+      <h3>Escape</h3>
+      <ul>
+        <li>Once all required tasks are completed: exit door unlocks.</li>
+        <li>Survivors escape individually.</li>
+        <li>Anyone left inside may still be killed.</li>
+      </ul>
+
+      <h3>Communication &amp; Visibility</h3>
+      <ul>
+        <li>All players and spectators are in one party.</li>
+        <li>Party chat used for announcements.</li>
+        <li>Health bars are visible to everyone.</li>
+      </ul>
+
+      <h3>Outcomes &amp; Rewards</h3>
+      <ul>
+        <li><strong>Killer:</strong> Gold per survivor kill. Bonus prize if all survivors are eliminated.</li>
+        <li><strong>Survivors:</strong> Gold per survivor escape. Bonus prize if all survivors escape.</li>
+        <li class="muted">Exact rewards announced per event.</li>
+      </ul>
+
+      <p><strong>Enter the house. Trust no one. Run.</strong></p>
+    </section>
+
+    <section class="card" id="bless-or-bolt" aria-label="Bless or Bolt rules">
+      <h2>Bless or Bolt <span class="muted">— Funhouse Battle Royale</span></h2>
+      <p class="muted">
+        A four-level funhouse where players enter with no gear, scavenge to survive, manipulate magic through color,
+        and fight until only one remains.
+      </p>
+
+      <h3>Core Rules</h3>
+      <ul>
+        <li>Players enter naked (no items).</li>
+        <li>Each player spawns in a different location.</li>
+        <li>Weapons found inside use <strong>Use Best Weapon Skill</strong>.</li>
+        <li>Armor, bandages, and potions can be looted.</li>
+        <li><strong>Death = eliminated.</strong></li>
+        <li>Corpses remain — looting is allowed.</li>
+        <li>Alliances are allowed, but only one winner.</li>
+      </ul>
+
+      <h3>Color System</h3>
+      <ul>
+        <li>Each player starts wearing either a <strong>Red</strong> or <strong>Blue</strong> robe.</li>
+        <li>Color only affects mage rooms.</li>
+        <li>Robes can be looted and swapped.</li>
+        <li>Final color does not matter — survival is all that counts.</li>
+      </ul>
+
+      <h3>Mage Rooms</h3>
+      <ul>
+        <li>Stationary moderator mages apply effects when crossed.</li>
+        <li>
+          <strong>Same Color Mage</strong>
+          <ul>
+            <li>Injured → Heal</li>
+            <li>Full HP → Bless</li>
+          </ul>
+        </li>
+        <li>
+          <strong>Opposite Color Mage</strong>
+          <ul>
+            <li>Injured → Lightning Bolt</li>
+            <li>Full HP → Curse</li>
+          </ul>
+        </li>
+        <li class="muted">Mage effects retrigger only after leaving the room and time has passed.</li>
+      </ul>
+
+      <h3>Hazards</h3>
+      <ul>
+        <li>
+          <strong>Dragon Trap Room</strong>
+          <ul>
+            <li>A teleporter may send players into a room with a Greater Dragon.</li>
+            <li>An exit exists — survival is not guaranteed.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h3>Forced Progression</h3>
+      <ul>
+        <li>After time passes, players are warned to move upward.</li>
+        <li>
+          If players stall:
+          <ul>
+            <li>A fully geared <strong>Closer</strong> enters the lowest floor.</li>
+            <li>The Closer kills anyone remaining.</li>
+            <li>The Closer advances upward over time.</li>
+          </ul>
+        </li>
+        <li><strong>It is possible for no one to survive.</strong></li>
+      </ul>
+
+      <h3>Communication &amp; Visibility</h3>
+      <ul>
+        <li>All players and spectators are in one party.</li>
+        <li>Party chat is used for announcements.</li>
+        <li>Health bars are visible to everyone.</li>
+      </ul>
+
+      <h3>Players &amp; Prize</h3>
+      <ul>
+        <li>Recommended: 4–12 players.</li>
+        <li>Winner: last surviving player.</li>
+        <li class="muted">Prize announced per event. If all players die, the prize rolls over or is forfeited.</li>
+      </ul>
+    </section>
+  </section>
+</BaseLayout>

@@ -1,0 +1,61 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const inviteUrl = ""; // add later (permanent invite)
+---
+
+<BaseLayout title="Discord • Hit Syndicate • Atlantic" current="discord">
+  <section class="hero" aria-label="Discord page header">
+    <div>
+      <h1>Discord</h1>
+      <p class="tagline">Coordination • Events • Callouts</p>
+    </div>
+
+    <div class="wax" aria-label="Section label">
+      <span class="seal" aria-hidden="true"></span>
+      <span>Comms</span>
+    </div>
+  </section>
+
+  <section class="grid" aria-label="Discord content">
+    <section class="card" aria-label="Join Discord">
+      <h2>Join</h2>
+
+      {inviteUrl ? (
+        <p>
+          <a href={inviteUrl}>Join the Hit Syndicate Discord</a>
+        </p>
+      ) : (
+        <p class="muted">
+          Invite link coming soon. For now, DM a member in-game for an invite.
+        </p>
+      )}
+    </section>
+
+    <section class="card half" aria-label="What Discord is for">
+      <h2>What it’s for</h2>
+      <ul>
+        <li>Event coordination</li>
+        <li>PvP callouts &amp; practice</li>
+        <li>PvM runs, champs, raids</li>
+        <li>Templates &amp; gearing help</li>
+      </ul>
+    </section>
+
+    <section class="card half" aria-label="Basic expectations">
+      <h2>House rules</h2>
+      <ul>
+        <li>No drama</li>
+        <li>Don’t dox or post personal info</li>
+        <li>Keep it playable: callouts &gt; arguing</li>
+      </ul>
+    </section>
+
+    <section class="card" aria-label="Channels">
+      <h2>Channels</h2>
+      <p class="muted">
+        We keep it simple: announcements, events, pvp, pvm, templates, trades, and clips.
+      </p>
+    </section>
+  </section>
+</BaseLayout>

@@ -1,0 +1,52 @@
+---
+import Nav from "../components/Nav.astro";
+
+const {
+  title = "Hit Syndicate • Atlantic",
+  current = "",
+  heroImage = "",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{title}</title>
+    <link rel="stylesheet" href="/assets/style.css?v=1" />
+  </head>
+
+  <body>
+    <div class="smoke" aria-hidden="true"></div>
+
+    <a class="visually-hidden-focusable" href="#main">Skip to main content</a>
+
+    <div class="wrap">
+      <div class="topbar">
+        <div class="brand">
+          <div class="sigil" aria-hidden="true"></div>
+          <div>Hit Syndicate • Atlantic</div>
+        </div>
+
+        <Nav current={current} />
+      </div>
+
+      <main id="main" class="paper" tabindex="-1">
+        <div class="paper-inner">
+          {heroImage && (
+            <div
+              class="site-hero"
+              style={`background-image:url(${heroImage});`}
+              aria-hidden="true"
+            />
+          )}
+
+          <slot />
+        </div>
+      </main>
+
+      <footer class="footer">© Hit Syndicate • Atlantic</footer>
+    </div>
+  </body>
+</html>

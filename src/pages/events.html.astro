@@ -1,0 +1,97 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const upcoming = [
+  // { date: "TBD", title: "Duel Night (Bo3)", type: "PvP", note: "Bring 1–2 templates." },
+  // { date: "TBD", title: "Champ Spawn Run", type: "PvM", note: "Scroll split after." },
+];
+
+const current = [
+  // { range: "This Week", title: "Duel Ladder", type: "PvP", note: "Best-of-3. Leaderboard in Discord." },
+];
+
+const previous = [
+  // { date: "Jan 18, 2026", title: "Roof Run", type: "PvM", outcome: "Clean clear.", links: [{ label: "Media", href: "media.html" }] },
+  // { date: "Dec 30, 2025", title: "Tournament Night", type: "PvP", outcome: "Winner: ____", links: [{ label: "Bracket", href: "media.html" }] },
+];
+---
+
+<BaseLayout title="Events • Hit Syndicate • Atlantic" current="events">
+  <section class="hero" aria-label="Events page header">
+    <div>
+      <h1>Events</h1>
+      <p class="tagline">Upcoming • Current • Previous</p>
+    </div>
+
+    <div class="wax" aria-label="Section label">
+      <span class="seal" aria-hidden="true"></span>
+      <span>Operations</span>
+    </div>
+  </section>
+
+  <section class="grid" aria-label="Events content">
+    <section class="card" aria-label="Upcoming events">
+      <h2>Upcoming</h2>
+
+      {upcoming.length === 0 ? (
+        <p class="muted">No upcoming events posted yet.</p>
+      ) : (
+        <ul>
+          {upcoming.map((e) => (
+            <li>
+              <strong>{e.date}</strong> — {e.title}{" "}
+              <span class="muted">({e.type})</span>
+              {e.note ? <div class="muted">{e.note}</div> : null}
+            </li>
+          ))}
+        </ul>
+      )}
+    </section>
+
+    <section class="card" aria-label="Current events">
+      <h2>Current</h2>
+
+      {current.length === 0 ? (
+        <p class="muted">Nothing active right now.</p>
+      ) : (
+        <ul>
+          {current.map((e) => (
+            <li>
+              <strong>{e.range}</strong> — {e.title}{" "}
+              <span class="muted">({e.type})</span>
+              {e.note ? <div class="muted">{e.note}</div> : null}
+            </li>
+          ))}
+        </ul>
+      )}
+    </section>
+
+    <section class="card" aria-label="Previous events">
+      <h2>Previous</h2>
+
+      {previous.length === 0 ? (
+        <p class="muted">No previous events logged yet.</p>
+      ) : (
+        <ul>
+          {previous.map((e) => (
+            <li>
+              <strong>{e.date}</strong> — {e.title}{" "}
+              <span class="muted">({e.type})</span>
+              {e.outcome ? <div class="muted">{e.outcome}</div> : null}
+              {e.links?.length ? (
+                <div>
+                  {e.links.map((l, idx) => (
+                    <>
+                      <a href={l.href}>{l.label}</a>
+                      {idx < e.links.length - 1 ? " • " : ""}
+                    </>
+                  ))}
+                </div>
+              ) : null}
+            </li>
+          ))}
+        </ul>
+      )}
+    </section>
+  </section>
+</BaseLayout>
